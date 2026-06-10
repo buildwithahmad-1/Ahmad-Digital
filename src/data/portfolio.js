@@ -18,7 +18,7 @@ export const navLinks = [
 ];
 
 export const socials = [
-  { label: 'GitHub', href: 'https://github.com/bilalahmad', icon: FaGithub },
+  { label: 'GitHub', href: 'https://github.com/gira7902-star', icon: FaGithub },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/bilalahmad', icon: FaLinkedin },
   { label: 'WhatsApp', href: 'https://wa.me/920000000000', icon: FaWhatsapp },
   { label: 'Email', href: 'mailto:bilal@example.com', icon: FaEnvelope },
