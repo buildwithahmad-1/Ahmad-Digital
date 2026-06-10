@@ -28,7 +28,8 @@ build:
 pages:
   stage: deploy
   script:
-    - cp -r dist public
+    - rm -rf public
+    - mv dist public
   artifacts:
     paths:
       - public
