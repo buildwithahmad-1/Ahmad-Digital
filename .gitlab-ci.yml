@@ -1,0 +1,41 @@
+# CI/CD: builds the Vite app and deploys to GitLab Pages
+image: node:20-alpine
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+stages:
+  - build
+  - deploy
+
+cache:
+  key:
+    files:
+      - package.json
+  paths:
+    - node_modules/
+
+build:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  variables:
+    VITE_BASE_PATH: "/folio/"
+  artifacts:
+    paths:
+      - dist
+    expire_in: 1 week
+
+pages:
+  stage: deploy
+  script:
+    - rm -rf public
+    - mv dist public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
