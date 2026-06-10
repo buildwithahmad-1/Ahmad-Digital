@@ -1,3 +1,4 @@
+# CI/CD: builds the Vite app and deploys to GitLab Pages
 image: node:20-alpine
 
 workflow:
