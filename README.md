@@ -1,4 +1,4 @@
-# Bilal Ahmad — Portfolio
+# Ahmad — Portfolio
 
 A modern, premium, responsive personal portfolio website for a Full Stack MERN Developer.
 
