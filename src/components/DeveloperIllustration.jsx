@@ -30,16 +30,16 @@ export default function DeveloperIllustration() {
       <rect x="118" y="282" width="80" height="10" rx="5" fill="#3B82F6" />
 
       <g>
-        <rect x="30" y="160" width="96" height="40" rx="20" fill="#0F172A" stroke="#3B82F6" strokeWidth="2" />
-        <text x="78" y="186" textAnchor="middle" fontSize="16" fontWeight="700" fill="#61DAFB" fontFamily="Inter, sans-serif">React</text>
+        <rect x="22" y="160" width="120" height="40" rx="20" fill="#0F172A" stroke="#21759B" strokeWidth="2" />
+        <text x="82" y="186" textAnchor="middle" fontSize="15" fontWeight="700" fill="#21759B" fontFamily="Inter, sans-serif">WordPress</text>
       </g>
       <g>
-        <rect x="392" y="50" width="96" height="40" rx="20" fill="#0F172A" stroke="#22C55E" strokeWidth="2" />
-        <text x="440" y="76" textAnchor="middle" fontSize="16" fontWeight="700" fill="#22C55E" fontFamily="Inter, sans-serif">Node</text>
+        <rect x="382" y="50" width="120" height="40" rx="20" fill="#0F172A" stroke="#96BF0D" strokeWidth="2" />
+        <text x="442" y="76" textAnchor="middle" fontSize="15" fontWeight="700" fill="#96BF0D" fontFamily="Inter, sans-serif">Shopify</text>
       </g>
       <g>
-        <rect x="400" y="250" width="110" height="40" rx="20" fill="#0F172A" stroke="#06B6D4" strokeWidth="2" />
-        <text x="455" y="276" textAnchor="middle" fontSize="16" fontWeight="700" fill="#06B6D4" fontFamily="Inter, sans-serif">Mongo</text>
+        <rect x="382" y="250" width="120" height="40" rx="20" fill="#0F172A" stroke="#F59E0B" strokeWidth="2" />
+        <text x="442" y="276" textAnchor="middle" fontSize="15" fontWeight="700" fill="#F59E0B" fontFamily="Inter, sans-serif">Marketing</text>
       </g>
 
       <rect x="150" y="318" width="220" height="14" rx="7" fill="url(#brand)" />

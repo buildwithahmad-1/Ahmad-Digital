@@ -32,5 +32,5 @@ npm run build
 ## Customize
 
 - Edit content in `src/data/portfolio.js` (skills, projects, socials, testimonials, timeline)
-- Replace `public/resume.pdf` with your real resume
+- Replace `` with your real resume
 - Update social/contact links in `src/data/portfolio.js`

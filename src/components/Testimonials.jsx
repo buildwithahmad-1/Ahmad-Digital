@@ -23,12 +23,12 @@ export default function Testimonials() {
             className="glass flex flex-col rounded-3xl p-8"
           >
             <FaQuoteLeft className="text-3xl text-primary/40" />
-            <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+            <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-slate-600 dark:text-slate-300 whitespace-pre-line">
               “{t.quote}”
             </blockquote>
             <figcaption className="mt-6 flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-brand text-lg font-bold text-white">
-                {t.name.charAt(0)}
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-brand text-lg text-white">
+                <t.icon />
               </div>
               <div>
                 <p className="font-bold">{t.name}</p>

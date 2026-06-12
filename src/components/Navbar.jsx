@@ -9,6 +9,17 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
+  const handleNavigation = (href) => {
+    if (href.startsWith('#')) {
+      const targetId = href.substring(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        setOpen(false);
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  };
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -25,9 +36,12 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 sm:px-8">
-        <a href="#home" className="text-xl font-extrabold">
-          <span className="gradient-text">Bilal</span>
-          <span className="text-slate-800 dark:text-white">.dev</span>
+        <a href="#home" className="font-extrabold" onClick={(e) => {
+          e.preventDefault();
+          window.location.href = window.location.pathname;
+        }}>
+          <span className="gradient-text text-xl">Ahmad </span>
+          <span className="text-xl text-slate-800 dark:text-white">Digital</span>
         </a>
 
         <ul className="hidden items-center gap-7 md:flex">
@@ -35,6 +49,10 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavigation(link.href);
+                }}
                 className="text-sm font-medium text-slate-600 transition-colors hover:text-primary dark:text-slate-300 dark:hover:text-accent"
               >
                 {link.label}
@@ -45,16 +63,25 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <button
+            type="button"
             onClick={toggleTheme}
             aria-label="Toggle dark mode"
             className="glass rounded-full p-2.5 text-lg text-primary transition-transform hover:scale-110 dark:text-accent"
           >
             {theme === 'dark' ? <FiSun /> : <FiMoon />}
           </button>
-          <a href="#contact" className="btn-primary hidden !px-5 !py-2 text-sm md:inline-flex">
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavigation('#contact');
+            }}
+            className="btn-primary hidden !px-5 !py-2 text-sm md:inline-flex"
+          >
             Hire Me
           </a>
           <button
+            type="button"
             onClick={() => setOpen((o) => !o)}
             aria-label="Toggle menu"
             className="glass rounded-full p-2.5 text-lg md:hidden"
@@ -66,24 +93,30 @@ export default function Navbar() {
 
       <AnimatePresence>
         {open && (
-          <motion.ul
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="glass mx-4 mt-3 overflow-hidden rounded-2xl md:hidden"
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="absolute inset-x-0 top-full z-50 px-4 md:hidden"
           >
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block px-6 py-3 font-medium text-slate-700 transition-colors hover:text-primary dark:text-slate-200"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </motion.ul>
+            <ul className="overflow-hidden rounded-2xl bg-white/20 dark:bg-white/8 border border-white/10 bg-clip-padding backdrop-blur-sm">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavigation(link.href);
+                    }}
+                    className="w-full text-left block px-6 py-3 font-medium text-slate-700 transition-colors hover:text-primary dark:text-slate-200"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.header>

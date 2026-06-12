@@ -8,7 +8,7 @@ export default function Skills() {
       <SectionHeading
         eyebrow="Skills"
         title="My Tech Stack"
-        subtitle="Technologies I use to build fast, scalable and modern applications."
+        subtitle="Technologies I use to build modern, fast, and scalable websites and online stores."
       />
       <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {skills.map((skill, i) => (

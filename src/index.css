@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
   body {
     @apply bg-slate-50 text-slate-800 antialiased transition-colors duration-300 dark:bg-dark dark:text-slate-200;
   }
@@ -11,6 +15,7 @@
 @layer components {
   .section {
     @apply mx-auto max-w-7xl px-5 py-20 sm:px-8 md:py-28;
+    scroll-margin-top: 5rem;
   }
   .glass {
     @apply border border-white/40 bg-white/70 shadow-lg backdrop-blur-xl dark:border-white/10 dark:bg-white/5;
@@ -23,5 +28,71 @@
   }
   .btn-outline {
     @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary/60 px-7 py-3 font-semibold text-primary transition-all duration-300 hover:scale-105 hover:bg-primary hover:text-white dark:text-slate-100;
+  }
+
+  @keyframes borderFlow {
+    0% {
+      border-color: rgb(59, 130, 246);
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.3);
+    }
+    50% {
+      border-color: rgb(139, 92, 246);
+      box-shadow: 0 0 12px 2px rgba(139, 92, 246, 0.4);
+    }
+    100% {
+      border-color: rgb(6, 182, 212);
+      box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.3);
+    }
+  }
+
+  .btn-outline.animate-border {
+    animation: borderFlow 3s ease-in-out infinite;
+  }
+
+  .animate-blink-heavy {
+    animation: blinkHeavy 3.4s ease-in-out infinite;
+  }
+
+  .animate-timer-bar {
+    animation: timerBar 5s ease-in-out infinite;
+    transform-origin: left;
+  }
+
+  @keyframes blinkHeavy {
+    0%, 100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      box-shadow: 0 0 0 rgba(103, 109, 246, 0);
+    }
+    20% {
+      opacity: 0.85;
+      transform: translateY(0) scale(1);
+      box-shadow: 0 0 8px rgba(103, 109, 246, 0.08);
+    }
+    35% {
+      opacity: 0.55;
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 0 16px rgba(103, 109, 246, 0.16);
+    }
+    55% {
+      opacity: 0.8;
+      transform: translateY(0) scale(1);
+      box-shadow: 0 0 10px rgba(103, 109, 246, 0.1);
+    }
+  }
+
+  @keyframes timerBar {
+    0% {
+      transform: scaleX(0);
+      opacity: 0.85;
+    }
+    50% {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scaleX(0);
+      opacity: 0.85;
+    }
   }
 }

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { FiSend } from 'react-icons/fi';
 import SectionHeading from './SectionHeading.jsx';
 import { socials } from '../data/portfolio.js';
+import ThankYouPopup from './ThankYouPopup.jsx';
 
 const inputClasses =
   'w-full rounded-xl border border-slate-300/60 bg-white/60 px-4 py-3 text-sm outline-none backdrop-blur transition-all focus:border-primary focus:ring-2 focus:ring-primary/40 dark:border-white/10 dark:bg-white/5 dark:placeholder-slate-500';
@@ -10,15 +11,42 @@ const inputClasses =
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
+  const [showThankYou, setShowThankYou] = useState(false);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Hook this up to your backend or a service like Formspree / EmailJS.
-    setSent(true);
-    setForm({ name: '', email: '', message: '' });
-    setTimeout(() => setSent(false), 4000);
+    setError('');
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/as6629151@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          _subject: 'New contact request from your portfolio',
+          _captcha: 'false',
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || 'Unable to send message.');
+
+      setSent(true);
+      setForm({ name: '', email: '', message: '' });
+      setShowThankYou(true);
+      setTimeout(() => setSent(false), 4000);
+    } catch (err) {
+      console.error(err);
+      setError('Unable to send message. Please try again later.');
+    }
   };
 
   return (
@@ -69,6 +97,7 @@ export default function Contact() {
           <button type="submit" className="btn-primary w-full sm:w-auto">
             <FiSend /> {sent ? 'Message Sent!' : 'Send Message'}
           </button>
+          {error && <p className="text-sm text-red-500">{error}</p>}
         </motion.form>
 
         <motion.div
@@ -97,6 +126,7 @@ export default function Contact() {
           ))}
         </motion.div>
       </div>
+      <ThankYouPopup isOpen={showThankYou} onClose={() => setShowThankYou(false)} />
     </section>
   );
 }
